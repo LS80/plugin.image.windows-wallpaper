@@ -4,4 +4,6 @@
   <string id="30010">Download directory</string>
   <string id="30020">Download</string>
   <string id="30021">No download directory set</string>
+  <string id="30022">Download Error</string>
+  <string id="30023">Check the download directory in the addon settings</string>
 </strings>
