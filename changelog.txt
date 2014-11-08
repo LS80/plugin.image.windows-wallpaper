@@ -1,0 +1,6 @@
+0.2.0
+ - Support a network location for downloads
+
+0.1.0
+ - Initial release
+ 
