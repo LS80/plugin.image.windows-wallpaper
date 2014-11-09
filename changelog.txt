@@ -1,3 +1,6 @@
+0.3.0
+ - Refactored to be compatible with Helix Beta 1
+
 0.2.1
  - Handle network problems
 
