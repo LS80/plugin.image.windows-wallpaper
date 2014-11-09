@@ -40,8 +40,12 @@ BASE_URL = "http://windows.microsoft.com/en-GB/windows/wallpaper"
 plugin = Plugin()
 
 def get_soup(url):
-    html = requests.get(url).text
-    return BeautifulSoup(html, 'html.parser')
+    try:
+        html = requests.get(url).text
+    except:
+        return None
+    else:
+        return BeautifulSoup(html, 'html.parser')
 
 def quote_url_path(url):
     url_split = urlsplit(url)
@@ -49,7 +53,12 @@ def quote_url_path(url):
     return urlunsplit((url_split.scheme, url_split.netloc, path, None, None))
 
 def get_categories():
-    for category in get_soup(BASE_URL)('a', 'tabLink'):
+    soup = get_soup(BASE_URL)
+    if soup is None:
+        return
+        yield
+
+    for category in soup('a', 'tabLink'):
         item = {'label': category.text,
                 'path': plugin.url_for('select_item',
                                        category_id=category['data-baseid'])}
@@ -58,6 +67,9 @@ def get_categories():
 def get_items(category_id):
     url = urljoin(BASE_URL, "?T1={}".format(category_id))
     soup = get_soup(url)
+    if soup is None:
+        return
+        yield
 
     for image in soup('div', 'prodPane'):
         name = image.find('h2', 'headingBase').string
