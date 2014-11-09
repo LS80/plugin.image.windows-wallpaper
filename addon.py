@@ -100,7 +100,7 @@ class DownloadError(Exception):
 
 class DownloadProgress(object):
 
-    BLOCK_SIZE = 131072
+    BLOCK_SIZE = 16384
 
     def __init__(self, heading, remote, outpath, size):
         self._heading = heading
