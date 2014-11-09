@@ -131,7 +131,10 @@ class DownloadProgress(object):
         self._out = xbmcvfs.File(self._outpath, 'w')
 
         while self._done < self._size:
-            data = self._remote.read(self.BLOCK_SIZE)
+            try:
+                data = self._remote.read(self.BLOCK_SIZE)
+            except Exception as e:
+                raise DownloadError(str(e))
             self._done += len(data)
             result = self._out.write(data)
             if not result:
@@ -151,7 +154,7 @@ class DownloadImage(object):
             path = os.path.join(directory, filename)
             url = urllib.unquote(url)
             try:
-                response = requests.get(url, stream=True)
+                response = requests.get(url, stream=True, timeout=5)
                 size = int(response.headers["content-length"])
             except Exception as e:
                 xbmcgui.Dialog().ok(plugin.get_string(30022), str(e), url)
