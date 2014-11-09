@@ -98,7 +98,7 @@ def index():
 
 @plugin.route('/category/<category>')
 def select_item(category):
-    return get_items(category)
+    return plugin.finish(get_items(category), view_mode='thumbnail')
 
 
 if __name__ == '__main__':
