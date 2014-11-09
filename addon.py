@@ -61,11 +61,11 @@ def get_categories():
     for category in soup('a', 'tabLink'):
         item = {'label': category.text,
                 'path': plugin.url_for('select_item',
-                                       category_id=category['data-baseid'])}
+                                       category=category['data-baseid'])}
         yield item
 
-def get_items(category_id):
-    url = urljoin(BASE_URL, "?T1={}".format(category_id))
+def get_items(category):
+    url = urljoin(BASE_URL, "?T1={}".format(category))
     soup = get_soup(url)
     if soup is None:
         return
@@ -170,9 +170,9 @@ class DownloadImage(object):
 def index():
     return get_categories()
 
-@plugin.route('/category_id/<category_id>')
-def select_item(category_id):
-    return get_items(category_id)
+@plugin.route('/category/<category>')
+def select_item(category):
+    return get_items(category)
 
 
 if __name__ == '__main__':
