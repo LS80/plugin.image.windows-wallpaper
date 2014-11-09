@@ -1,3 +1,6 @@
+0.4.0
+ - Set the default view mode to thumbnail
+
 0.3.0
  - Refactored to be compatible with Helix Beta 1
 
