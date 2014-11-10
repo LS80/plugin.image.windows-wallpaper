@@ -106,5 +106,7 @@ class DownloadImage(object):
 
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'download':
+    if len(sys.argv) == 1:
+        xbmc.executebuiltin("RunAddon(plugin.image.windows-wallpaper)")
+    elif sys.argv[1] == 'download':
         DownloadImage(*sys.argv[2:])
