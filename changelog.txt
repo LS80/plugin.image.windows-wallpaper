@@ -1,3 +1,6 @@
+0.5.0
+ - Stopped the plugin showing under programs
+
 0.4.1
  - Fixed a script error when run as a program
 
