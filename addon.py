@@ -63,7 +63,7 @@ def get_categories():
         yield item
 
 def get_items(category):
-    url = urljoin(BASE_URL, "?T1={}".format(category))
+    url = urljoin(BASE_URL, "?T1={0}".format(category))
     soup = get_soup(url)
     if soup is None:
         return
